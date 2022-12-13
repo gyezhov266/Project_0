@@ -1,0 +1,33 @@
+{
+	"folders": {},
+	"connections": {
+		"postgres-jdbc-1850c5c7c34-36a3a694e9888910": {
+			"provider": "postgresql",
+			"driver": "postgres-jdbc",
+			"name": "Planetarium",
+			"save-password": true,
+			"configuration": {
+				"host": "planetarium-database.cxj46t1rzhx8.us-east-1.rds.amazonaws.com",
+				"port": "5432",
+				"database": "Planetarium",
+				"url": "jdbc:postgresql://planetarium-database.cxj46t1rzhx8.us-east-1.rds.amazonaws.com:5432/Planetarium",
+				"configurationType": "URL",
+				"home": "postgresql_client",
+				"type": "dev",
+				"provider-properties": {},
+				"auth-model": "native"
+			}
+		}
+	},
+	"connection-types": {
+		"dev": {
+			"name": "Development",
+			"color": "255,255,255",
+			"description": "Regular development database",
+			"auto-commit": true,
+			"confirm-execute": false,
+			"confirm-data-change": false,
+			"auto-close-transactions": false
+		}
+	}
+}
