@@ -1,12 +1,15 @@
 package com.revature.service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.List;
 
 import com.revature.models.Planet;
 import com.revature.repository.PlanetDao;
 
 public class PlanetService {
-
+	public static Logger logger = LoggerFactory.getLogger(PlanetService.class);
 	private PlanetDao dao;
 
 	public PlanetService() {

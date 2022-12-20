@@ -1,12 +1,15 @@
 package com.revature.service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.List;
 
 import com.revature.models.Moon;
 import com.revature.repository.MoonDao;
 
 public class MoonService {
-
+	public static Logger logger = LoggerFactory.getLogger(MoonService.class);
 	private MoonDao dao;
 	
 	public MoonService(){
