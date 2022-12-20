@@ -1,6 +1,5 @@
 package com.revature.service;
 
-
 import com.revature.models.User;
 import com.revature.models.UsernamePasswordAuthentication;
 import com.revature.repository.UserDao;

@@ -31,7 +31,7 @@ public class MoonDao {
 
 	public Moon getMoonByName(String username, String moonName) {
 		try(Connection connection = ConnectionUtil.createConnection()) {
-			String sql = "SELECT * FROM moons m INNER JOIN planets p ON m.my_planet_id=p.id INNER JOIN users u ON p.owner_id=u.id WHERE u.username=? AND m.name=?";
+			String sql = "SELECT * FROM moons m INNER JOIN planets p ON m.myplanetid=p.id INNER JOIN users u ON p.ownerid=u.id WHERE u.username=? AND m.name=?";
 			PreparedStatement statement = connection.prepareStatement(sql);
 			statement.setString(1, username);
 			statement.setString(2, moonName);
@@ -52,7 +52,7 @@ public class MoonDao {
 
 	public Moon getMoonById(String username, int moonId) {
         try(Connection connection = ConnectionUtil.createConnection()) {
-            String sql = "SELECT * FROM moons m INNER JOIN planets p ON m.my_planet_id=p.id INNER JOIN users u ON p.owner_id=u.id WHERE u.username=? AND m.id=?";
+            String sql = "SELECT * FROM moons m INNER JOIN planets p ON m.myplanetid=p.id INNER JOIN users u ON p.ownerid=u.id WHERE u.username=? AND m.id=?";
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, username);
             statement.setInt(2, moonId);
@@ -73,10 +73,10 @@ public class MoonDao {
 
 	public Moon createMoon(String username, Moon m) {
 		try(Connection connection = ConnectionUtil.createConnection()) {
-			String sql = "INSERT INTO moons(name, my_planet_id) VALUES (?, (SELECT p.id FROM planets p INNER JOIN users u ON p.owner_id=u.id WHERE u.username=?))";
+			String sql = "INSERT INTO moons(name, myplanetid) VALUES (?, ?)";
 			PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			statement.setString(1, m.getName());
-			statement.setString(2, username);
+			statement.setInt(2, m.getMyPlanetId());
 			statement.executeUpdate();
 	
 			ResultSet rs = statement.getGeneratedKeys();
@@ -104,7 +104,7 @@ public class MoonDao {
 	
 	public List<Moon> getMoonsFromPlanet(int planetId) {
 		try(Connection connection = ConnectionUtil.createConnection()) {
-			String sql = "SELECT * FROM moons WHERE my_planet_id=?";
+			String sql = "SELECT * FROM moons WHERE myplanetid=?";
 			PreparedStatement statement = connection.prepareStatement(sql);
 			statement.setInt(1, planetId);
 			ResultSet rs = statement.executeQuery();
