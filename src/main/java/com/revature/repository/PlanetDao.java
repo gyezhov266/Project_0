@@ -32,7 +32,7 @@ public class PlanetDao {
 
 	public Planet getPlanetByName(String owner, String planetName) {
 		try(Connection connection = ConnectionUtil.createConnection()) {
-			String sql = "SELECT * FROM planets WHERE name=? AND owner_id=(SELECT id FROM users WHERE username=?)";
+			String sql = "SELECT * FROM planets WHERE name=? AND ownerid=(SELECT id FROM users WHERE username=?)";
 			PreparedStatement statement = connection.prepareStatement(sql);
 			statement.setString(1, planetName);
 			statement.setString(2, owner);
@@ -53,7 +53,7 @@ public class PlanetDao {
 
 	public Planet getPlanetById(String username, int planetId) {
 		try(Connection connection = ConnectionUtil.createConnection()) {
-			String sql = "SELECT * FROM planets WHERE id=? AND owner_id=(SELECT id FROM users WHERE username=?)";
+			String sql = "SELECT * FROM planets WHERE id=? AND ownerid=(SELECT id FROM users WHERE username=?)";
 			PreparedStatement statement = connection.prepareStatement(sql);
 			statement.setInt(1, planetId);
 			statement.setString(2, username);
@@ -74,7 +74,7 @@ public class PlanetDao {
 
 	public Planet createPlanet(String username, Planet p) {
 		try(Connection connection = ConnectionUtil.createConnection()) {
-			String sql = "INSERT INTO planets(name, owner_id) VALUES (?, (SELECT id FROM users WHERE username=?))";
+			String sql = "INSERT INTO planets(name, ownerid) VALUES (?, (SELECT id FROM users WHERE username=?))";
 			PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			statement.setString(1, p.getName());
 			statement.setString(2, username);
@@ -102,14 +102,18 @@ public class PlanetDao {
 		}
 	}
 
-/*	public static void main(String[] args) {
+	public static void main(String[] args) {
 		PlanetDao planetDao = new PlanetDao();
+		Planet planet = new Planet();
 		try {
 			System.out.println(planetDao.getAllPlanets());
+			System.out.println(planetDao.getPlanetByName("Greggy", "Earth"));
+			System.out.println(planetDao.getPlanetById("Greggy", 2));
+			System.out.println(planetDao.createPlanet("Greggy", planet));
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
-	}*/	
+	}
 }
 
 

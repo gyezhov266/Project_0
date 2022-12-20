@@ -1,6 +1,5 @@
 package com.revature;
 
-
 import com.revature.controller.RequestMapping;
 
 import io.javalin.Javalin;
@@ -12,6 +11,6 @@ public class MainDriver {
 			confg.plugins.enableDevLogging();
 		});
 		RequestMapping.setupEndpoints(app);
-		app.start(7000);
+		app.start(5432);
 	}
 }
