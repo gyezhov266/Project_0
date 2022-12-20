@@ -2,8 +2,6 @@ package com.revature.controller;
 
 import com.revature.exceptions.NotLoggedInException;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import io.javalin.Javalin;
 
 public class RequestMapping {
