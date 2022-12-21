@@ -17,6 +17,6 @@ done
 
 httpSuccess=$(($httpRequestTotal - $httpFailures))
 
-result=$(echo "scale=2; $httpSuccess / $httpRequestTotal" | bc)
+result=$(echo "scale=2; 100 - $httpSuccess / $httpRequestTotal" | bc)
 
 echo "HTTP success rate: $result%"
